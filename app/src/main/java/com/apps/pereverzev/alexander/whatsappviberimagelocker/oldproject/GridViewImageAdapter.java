@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -7,38 +7,24 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.assist.ViewScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-import com.nostra13.universalimageloader.core.imageaware.NonViewAware;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**

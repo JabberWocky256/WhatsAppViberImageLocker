@@ -1,7 +1,6 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -9,9 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,10 +15,11 @@ import android.view.View;
 import android.widget.*;
 
 
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.constants.AppConstant;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.MainActivity;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Александр on 02.11.2014.

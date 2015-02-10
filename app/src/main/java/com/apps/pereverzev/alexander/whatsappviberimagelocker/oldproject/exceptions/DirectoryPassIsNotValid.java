@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker.exceptions;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.exceptions;
 
 import java.io.IOException;
 

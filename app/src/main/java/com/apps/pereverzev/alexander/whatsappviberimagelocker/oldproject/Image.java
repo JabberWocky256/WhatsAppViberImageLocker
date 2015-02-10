@@ -1,11 +1,10 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.constants.AppConstant;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
 import java.io.*;
 

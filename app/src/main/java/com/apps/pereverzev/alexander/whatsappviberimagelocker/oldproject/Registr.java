@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 
 /**
  * Created by opereverzyev on 10.12.14.

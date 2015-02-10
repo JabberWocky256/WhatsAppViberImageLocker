@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker.constants;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants;
 
 import java.util.Arrays;
 import java.util.List;

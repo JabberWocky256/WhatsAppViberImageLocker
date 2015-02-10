@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.annotation.TargetApi;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.constants.AppConstant;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.exceptions.DirectoryPassIsNotValid;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.exceptions.EmptyDirectoryException;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.exceptions.DirectoryPassIsNotValid;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.exceptions.EmptyDirectoryException;
 
 import java.io.File;
 import java.util.ArrayList;
