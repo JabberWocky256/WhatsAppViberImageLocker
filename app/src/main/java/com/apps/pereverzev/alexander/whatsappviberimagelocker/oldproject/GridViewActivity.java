@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.*;
 
 
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.MainActivity;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.MainActivity;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
