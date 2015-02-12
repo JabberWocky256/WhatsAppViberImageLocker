@@ -3,12 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-    <ListView
-        android:id="@+id/galleryListView"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/galleryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:background="#fff"
         android:layout_weight="1">
-    </ListView>
+    </LinearLayout>
 </LinearLayout>

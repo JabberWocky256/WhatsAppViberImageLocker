@@ -23,12 +23,14 @@ public class Image {
     }
 
     public Bitmap getImageBitmap(){
+        Bitmap result = null;
+
         if(imagePath != null){
             BitmapLoader bitmapLoader = new BitmapLoader();
-            bitmapLoader.getImage(imagePath);
+            result = bitmapLoader.getImage(imagePath, 100, 100);
         }
 
-        return null;
+        return result;
     }
 
     public String getImagePath() {

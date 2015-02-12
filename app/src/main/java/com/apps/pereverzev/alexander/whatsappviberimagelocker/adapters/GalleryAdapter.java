@@ -61,8 +61,7 @@ public class GalleryAdapter extends BaseAdapter {
 
     private View getConvertView() {
         LinearLayout result = new LinearLayout(getContext());
-        result.setBackgroundColor(Color.CYAN);
-        result.setOrientation(LinearLayout.VERTICAL);
+        result.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         result.setLayoutParams(LLParams);
 
@@ -72,9 +71,10 @@ public class GalleryAdapter extends BaseAdapter {
     private void addImageView(Image image, LinearLayout convertView){
         ImageView mImage = new ImageView(getContext());
         mImage.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
-
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        mImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        mImage.setPadding(10,10,10,10);
         mImage.setImageBitmap(image.getImageBitmap());
 
         convertView.addView(mImage);

@@ -1,5 +1,6 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -12,15 +13,8 @@ import java.io.File;
 public class BitmapLoader {
 
 
-    public Bitmap getImage(String imagePath) {
+    public Bitmap getImage(String imagePath, int imageWidth, int imageHeight) {
         File file = new File(imagePath);
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-        int imageHeight = options.outHeight;
-        int imageWidth = options.outWidth;
-        String imageType = options.outMimeType;
 
         if(file.exists()){
             return decodeSampledBitmapFromFile(file, imageWidth, imageHeight);
@@ -35,7 +29,7 @@ public class BitmapLoader {
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-        if(width>200 && height>200) {
+        if(width>0 && height>0) {
             // Calculate inSampleSize
             options.inSampleSize = calculateInSampleSize(options, width, height);
         }
@@ -45,7 +39,7 @@ public class BitmapLoader {
         return BitmapFactory.decodeFile(file.getAbsolutePath(), options);
     }
 
-    public static int calculateInSampleSize(
+    private int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
