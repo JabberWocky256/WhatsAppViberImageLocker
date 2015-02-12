@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.TestData;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryRow;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.gallery_decorator.GalleryLinearLayout;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.test.TestData;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.apps.pereverzev.alexander.whatsappviberimagelocker;
+package com.apps.pereverzev.alexander.whatsappviberimagelocker.test;
 
 import android.content.Context;
 import android.os.Environment;
@@ -28,5 +28,18 @@ public class TestData {
         galleryRows.add(row);
 
         return galleryRows;
+    }
+
+    public static List<String> getImagesPaths(){
+        List<String> paths = new ArrayList<>();
+        for(String path: IMAGE_PATH) {
+            String p = Environment.getExternalStorageDirectory() + File.separator + "Download/";
+            paths.add(p);
+        }
+
+        //add not exited path
+        paths.add(Environment.getExternalStorageDirectory() + File.separator + "Download/" + "not_exist_file");
+
+        return paths;
     }
 }
