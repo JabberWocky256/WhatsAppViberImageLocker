@@ -2,6 +2,7 @@ package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -77,8 +78,8 @@ public class GalleryAdapter extends BaseAdapter {
         params.setMargins(margin, margin, margin, margin);
         mImage.setLayoutParams(params);
         mImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        mImage.setImageBitmap(image.getImageBitmap());
-
+        Bitmap bitmap = image.getImageBitmap();
+        mImage.setImageBitmap(bitmap);
         return mImage;
     }
 }

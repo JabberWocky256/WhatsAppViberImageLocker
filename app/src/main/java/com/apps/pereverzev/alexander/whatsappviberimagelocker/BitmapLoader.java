@@ -47,6 +47,7 @@ public class BitmapLoader {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
+        options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
         if(width>0 && height>0) {

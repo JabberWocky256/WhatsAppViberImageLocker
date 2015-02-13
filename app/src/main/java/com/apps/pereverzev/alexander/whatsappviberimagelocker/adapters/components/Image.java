@@ -28,7 +28,7 @@ public class Image {
 
         if(imagePath != null){
             BitmapLoader bitmapLoader = new BitmapLoader();
-            result = bitmapLoader.getImage(imagePath, 100, 100);
+            result = bitmapLoader.getImage(imagePath, (int)iconSize.width, (int)iconSize.height);
         }
 
         return result;
