@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
@@ -34,10 +35,11 @@ public class GalleryFragment extends Fragment {
         List<GalleryRow> galleryRows = (new GalleryGridCreator(TestData.getImagesPaths())).getGrid(getActivity());
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
-        LinearLayout galleryVerticalView = (LinearLayout)view.findViewById(R.id.galleryView);
-        GalleryLinearLayout galleryView = new GalleryLinearLayout(galleryVerticalView);
+        GridView galleryVerticalView = (GridView)view.findViewById(R.id.galleryView);
+        galleryVerticalView.setAdapter(adapter);
+     /*   GalleryLinearLayout galleryView = new GalleryLinearLayout(galleryVerticalView);
         galleryView.setAdapter(adapter);
-
+*/
         return view;
     }
 

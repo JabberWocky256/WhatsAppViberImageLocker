@@ -3,17 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
+
+    <GridView
         android:orientation="vertical"
         android:id="@+id/galleryView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:numColumns="1"
         android:background="#fff"
-        android:layout_weight="1">
-    </LinearLayout>
-    </ScrollView>
+        android:layout_weight="1"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+    </GridView>
 </LinearLayout>

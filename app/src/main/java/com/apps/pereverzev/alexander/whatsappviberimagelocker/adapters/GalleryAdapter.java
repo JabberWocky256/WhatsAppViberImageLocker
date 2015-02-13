@@ -54,7 +54,11 @@ public class GalleryAdapter extends BaseAdapter {
         GalleryRow row = (GalleryRow)getItem(position);
         int length = row.getCount();
         for(int i = 0; i<length; i++){
-            ((LinearLayout)convertView).addView(addImageView(row.getImage(i)));
+            ImageView image = addImageView(row.getImage(i));
+            Bitmap bitmap = row.getImage(i).getImageBitmap();
+            image.setImageBitmap(bitmap);
+
+            ((LinearLayout)convertView).addView(image);
         }
 
         return convertView;
@@ -78,8 +82,7 @@ public class GalleryAdapter extends BaseAdapter {
         params.setMargins(margin, margin, margin, margin);
         mImage.setLayoutParams(params);
         mImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Bitmap bitmap = image.getImageBitmap();
-        mImage.setImageBitmap(bitmap);
+
         return mImage;
     }
 }
