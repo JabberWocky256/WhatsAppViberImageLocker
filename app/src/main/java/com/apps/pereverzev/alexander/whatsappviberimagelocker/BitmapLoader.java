@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.DisplaySize;
+
 import java.io.File;
 
 /**
@@ -21,6 +23,24 @@ public class BitmapLoader {
         }
 
         return null;
+    }
+
+    public DisplaySize.Size getImageSize(String imagePath){
+        File file = new File(imagePath);
+
+        int width = 0;
+        int height = 0;
+
+        if(file.exists()){
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(file.getAbsolutePath(), options);
+
+            width = options.outWidth;
+            height = options.outHeight;
+        }
+
+        return new DisplaySize().new Size(height, width);
     }
 
     private Bitmap decodeSampledBitmapFromFile(File file, int width, int height){

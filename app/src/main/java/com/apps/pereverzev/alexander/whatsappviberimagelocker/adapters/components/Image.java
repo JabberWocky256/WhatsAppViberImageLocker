@@ -1,6 +1,7 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components;
 
 import android.graphics.Bitmap;
+import android.view.Display;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.BitmapLoader;
 
@@ -8,17 +9,17 @@ import com.apps.pereverzev.alexander.whatsappviberimagelocker.BitmapLoader;
  * Created by opereverzyev on 11.02.15.
  */
 public class Image {
-    private int length = 0;
-    private int width = 0;
-    private int iconLength = 0;
-    private int iconWidth = 0;
+    private DisplaySize.Size fullSize;
+    private DisplaySize.Size iconSize;
     private String imagePath;
 
     public Image(String imagePath) {
-        this.length = length;
-        this.width = width;
-        this.iconLength = iconLength;
-        this.iconWidth = iconWidth;
+        this.imagePath = imagePath;
+    }
+
+    public Image(DisplaySize.Size fullSize, DisplaySize.Size iconSize, String imagePath) {
+        this.fullSize = fullSize;
+        this.iconSize = iconSize;
         this.imagePath = imagePath;
     }
 
@@ -37,19 +38,19 @@ public class Image {
         return imagePath;
     }
 
-    public int getLength() {
-        return length;
+    public DisplaySize.Size getFullSize() {
+        if(fullSize == null)
+        {
+            fullSize = new BitmapLoader().getImageSize(imagePath);
+        }
+        return fullSize;
     }
 
-    public int getWidth() {
-        return width;
+    public DisplaySize.Size getIconSize() {
+        return iconSize;
     }
 
-    public int getIconLength() {
-        return iconLength;
-    }
-
-    public int getIconWidth() {
-        return iconWidth;
+    public void setIconSize(DisplaySize.Size iconSize) {
+        this.iconSize = iconSize;
     }
 }

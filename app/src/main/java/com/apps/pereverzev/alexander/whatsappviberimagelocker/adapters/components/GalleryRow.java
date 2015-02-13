@@ -22,6 +22,12 @@ public class GalleryRow {
         images.add(image);
     }
 
+    public void addArray(Image[] images){
+        for(Image img: images){
+            addImage(img);
+        }
+    }
+
     public Image getImage(int position){
         return images.get(position);
     }

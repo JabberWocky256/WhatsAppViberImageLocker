@@ -1,16 +1,18 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.gallery_decorator;
 
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 
 /**
  * Created by opereverzyev on 12.02.15.
  */
 public class GalleryLinearLayout extends GalleryViewDecorator {
 
-    public GalleryLinearLayout(ViewGroup component) {
+    public GalleryLinearLayout(LinearLayout component) {
         super(component);
+        component.setGravity(Gravity.TOP);
     }
 
     @Override

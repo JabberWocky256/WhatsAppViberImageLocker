@@ -1,7 +1,7 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters;
 
+import android.app.ActionBar;
 import android.app.Activity;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -53,7 +53,7 @@ public class GalleryAdapter extends BaseAdapter {
         GalleryRow row = (GalleryRow)getItem(position);
         int length = row.getCount();
         for(int i = 0; i<length; i++){
-            addImageView(row.getImage(i), (LinearLayout)convertView);
+            ((LinearLayout)convertView).addView(addImageView(row.getImage(i)));
         }
 
         return convertView;
@@ -62,21 +62,23 @@ public class GalleryAdapter extends BaseAdapter {
     private View getConvertView() {
         LinearLayout result = new LinearLayout(getContext());
         result.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        result.setLayoutParams(LLParams);
+        LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        llParams.setMargins(5,0,5,0);
+        result.setLayoutParams(llParams);
 
         return result;
     }
 
-    private void addImageView(Image image, LinearLayout convertView){
+    private ImageView addImageView(Image image){
+        int margin = 5;
+
         ImageView mImage = new ImageView(getContext());
-        mImage.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)image.getIconSize().width, (int)image.getIconSize().height);
+        params.setMargins(margin, margin, margin, margin);
+        mImage.setLayoutParams(params);
         mImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        mImage.setPadding(10,10,10,10);
         mImage.setImageBitmap(image.getImageBitmap());
 
-        convertView.addView(mImage);
+        return mImage;
     }
 }

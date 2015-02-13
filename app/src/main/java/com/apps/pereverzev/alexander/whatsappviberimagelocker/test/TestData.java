@@ -14,7 +14,7 @@ import java.util.List;
  * Created by opereverzyev on 11.02.15.
  */
 public class TestData {
-    private static final String[] IMAGE_PATH = {"img.jpg", "imgBig.jpeg", "photo-camera_w22.jpg"};
+    private static final String[] IMAGE_PATH = {"img.jpg", "imgBig.jpeg", "photo-camera_w22.jpg", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.jpg"};
 
     public static List<GalleryRow> getGalleryRows(Context context){
         String path = Environment.getExternalStorageDirectory() + File.separator + "Download/";
@@ -33,7 +33,7 @@ public class TestData {
     public static List<String> getImagesPaths(){
         List<String> paths = new ArrayList<>();
         for(String path: IMAGE_PATH) {
-            String p = Environment.getExternalStorageDirectory() + File.separator + "Download/";
+            String p = Environment.getExternalStorageDirectory() + File.separator + "Download/" + path;
             paths.add(p);
         }
 

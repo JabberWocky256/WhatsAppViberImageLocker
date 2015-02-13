@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryGridCreator;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryRow;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.gallery_decorator.GalleryLinearLayout;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.test.TestData;
@@ -30,7 +31,7 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.gallery_view, container, false);
 
-        List<GalleryRow> galleryRows = TestData.getGalleryRows(getActivity());
+        List<GalleryRow> galleryRows = (new GalleryGridCreator(TestData.getImagesPaths())).getGrid(getActivity());
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
         LinearLayout galleryVerticalView = (LinearLayout)view.findViewById(R.id.galleryView);
