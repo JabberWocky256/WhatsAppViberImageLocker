@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryRow;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.Image;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.holders.GalleryAdapterHolder;
 
 import java.util.List;
 
@@ -47,17 +48,22 @@ public class GalleryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        GalleryAdapterHolder holder;
+
         if(convertView == null) {
             convertView = getConvertView();
+            holder = new GalleryAdapterHolder();
+
+            GalleryRow row = (GalleryRow)getItem(position);
+            int length = row.getCount();
+            for(int i = 0; i<length; i++){
+                holder.images.add(addImageView(row.getImage(i)));
+            }
         }
 
-        GalleryRow row = (GalleryRow)getItem(position);
-        int length = row.getCount();
-        for(int i = 0; i<length; i++){
-            ImageView image = addImageView(row.getImage(i));
+        for(ImageView imgView: holder.images) {
             Bitmap bitmap = row.getImage(i).getImageBitmap();
             image.setImageBitmap(bitmap);
-
             ((LinearLayout)convertView).addView(image);
         }
 
