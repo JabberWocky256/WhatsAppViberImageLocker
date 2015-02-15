@@ -16,13 +16,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".oldproject.GridViewActivity">
-
-        </activity>
-
-        <activity android:name=".oldproject.FullScreenViewActivity"/>
-
-        <activity android:name=".oldproject.Registr"/>
+        <activity android:name=".activities.FullScreenViewActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

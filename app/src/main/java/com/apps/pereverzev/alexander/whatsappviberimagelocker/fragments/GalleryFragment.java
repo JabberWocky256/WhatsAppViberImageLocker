@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
@@ -35,7 +36,7 @@ public class GalleryFragment extends Fragment {
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
         GridView galleryVerticalView = (GridView) view.findViewById(R.id.galleryView);
-        galleryVerticalView.setOnScrollListener((MyImageLoader.getInstance(getActivity())).getOnPauseListener());
+     //   galleryVerticalView.setOnScrollListener((MyImageLoader.getInstance(getActivity())).getOnPauseListener());
         galleryVerticalView.setAdapter(adapter);
 
         return view;

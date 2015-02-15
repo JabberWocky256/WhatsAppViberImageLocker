@@ -51,4 +51,23 @@ public class Image {
     public void setIconSize(DisplaySize.Size iconSize) {
         this.iconSize = iconSize;
     }
+
+    @Override
+    public int hashCode() {
+        return imagePath.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        try {
+            Image img = (Image)o;
+        } catch (ClassCastException cce){
+            return false;
+        }
+
+        if(this.hashCode() == o.hashCode())
+            return true;
+        else
+            return false;
+    }
 }

@@ -12,9 +12,17 @@ import java.io.File;
  */
 public class BitmapLoader {
 
-
+    @Deprecated
+    //used image loader
     public Bitmap getImage(String imagePath, int imageWidth, int imageHeight) {
         File file = new File(imagePath);
+        long size = file.length();
+
+        while(size > 5000000){
+            imageHeight /= 2;
+            imageWidth /= 2;
+            size /=2;
+        }
 
         if (file.exists()) {
             return decodeSampledBitmapFromFile(file, imageWidth, imageHeight);
@@ -45,7 +53,7 @@ public class BitmapLoader {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        options.inPreferredConfig = Bitmap.Config.ALPHA_8;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
         BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
         if (width > 0 && height > 0) {
