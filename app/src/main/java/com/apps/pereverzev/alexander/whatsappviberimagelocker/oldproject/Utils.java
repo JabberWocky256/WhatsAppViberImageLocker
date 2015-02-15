@@ -22,6 +22,19 @@ import java.util.Locale;
 public class Utils {
     private ArrayList<String> filePaths;
 
+    public static void getFilesFromViberWhatsApp() {
+        Utils utils = new Utils();
+        try {
+            utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_VIBER));
+            utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_WATS_APP));
+            //  utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_WATS_APP_SENT));
+        } catch (EmptyDirectoryException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     // Reading file paths from SDCard
     public synchronized ArrayList<String> getFilePaths() throws EmptyDirectoryException, DirectoryPassIsNotValid {
         filePaths = new ArrayList<String>();
@@ -43,7 +56,7 @@ public class Utils {
     }
 
     // getting list of file paths
-    private  ArrayList<String> getFilesList(File directory) throws EmptyDirectoryException {
+    private ArrayList<String> getFilesList(File directory) throws EmptyDirectoryException {
         File[] listFiles = directory.listFiles();
         String[] listFileNames = directory.list();
 
@@ -55,7 +68,7 @@ public class Utils {
             for (int i = 0; i < listFiles.length; i++) {
 
                 String name = listFileNames[i];
-                if(name.startsWith(".") || name.equals("User photos") || name.equals("Profile Picture")|| name.equals("Android")){
+                if (name.startsWith(".") || name.equals("User photos") || name.equals("Profile Picture") || name.equals("Android")) {
                     continue;
                 }
 
@@ -70,28 +83,16 @@ public class Utils {
                     } else if (new File(filePath).isDirectory()) {
                         try {
                             getFilesList(new File(filePath));
-                        } catch (Exception e){ }
+                        } catch (Exception e) {
+                        }
                     }
-                }catch (Exception ex){
+                } catch (Exception ex) {
                     Log.e("HERE ERROR", filePath);
                 }
             }
         }
 
         return filePaths;
-    }
-
-    public static void getFilesFromViberWhatsApp(){
-        Utils utils = new Utils();
-        try {
-            utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_VIBER)) ;
-            utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_WATS_APP));
-            //  utils.getFilesList(new File(android.os.Environment.getExternalStorageDirectory() + "/" + AppConstant.PHOTO_ALBUM_WATS_APP_SENT));
-        } catch (EmptyDirectoryException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     // Check supported file extensions
@@ -107,7 +108,7 @@ public class Utils {
 
     }
 
-    public boolean isSpecialFile(String filePath){
+    public boolean isSpecialFile(String filePath) {
         String ext = filePath.substring((filePath.lastIndexOf(".") + 1),
                 filePath.length());
 

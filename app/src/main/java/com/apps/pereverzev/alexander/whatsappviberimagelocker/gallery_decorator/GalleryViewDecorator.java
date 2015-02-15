@@ -6,7 +6,7 @@ import android.widget.BaseAdapter;
 /**
  * Created by opereverzyev on 12.02.15.
  */
-public abstract class GalleryViewDecorator{
+public abstract class GalleryViewDecorator {
     protected ViewGroup component;
 
     public GalleryViewDecorator(ViewGroup component) {

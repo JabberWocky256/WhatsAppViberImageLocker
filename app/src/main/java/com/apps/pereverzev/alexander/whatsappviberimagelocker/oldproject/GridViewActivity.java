@@ -12,11 +12,11 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
-
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.MainActivity;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.MainActivity;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
 import java.util.ArrayList;
@@ -26,14 +26,13 @@ import java.util.ArrayList;
  */
 public class GridViewActivity extends Activity {
 
+    private static final int REQUEST = 1;
+    public static boolean onRestart = false;
     private Utils utils;
     private ArrayList<String> imagePaths = new ArrayList<String>();
     private GridViewImageAdapter adapter;
     private GridView gridView;
     private int columnWidth;
-    public static boolean onRestart = false;
-
-    private static final int REQUEST = 1;
     private String imagePath = "";
     private Image image;
 
@@ -47,7 +46,7 @@ public class GridViewActivity extends Activity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int a =10;
+                int a = 10;
                 a++;
             }
         });
@@ -63,10 +62,10 @@ public class GridViewActivity extends Activity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem item = menu.add ("Change password");
-        item.setOnMenuItemClickListener (new MenuItem.OnMenuItemClickListener(){
+        MenuItem item = menu.add("Change password");
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick (MenuItem item){
+            public boolean onMenuItemClick(MenuItem item) {
                 changePass();
                 return true;
             }
@@ -74,12 +73,12 @@ public class GridViewActivity extends Activity {
         return true;
     }
 
-    private void changePass(){
+    private void changePass() {
         Intent registr = new Intent(GridViewActivity.this, Registr.class);
         startActivity(registr);
     }
 
-    public void setAdapter(){
+    public void setAdapter() {
         // loading all image paths from SD card
 
 
@@ -92,7 +91,7 @@ public class GridViewActivity extends Activity {
 
     @Override
     protected void onPause() {
-        if(onRestart == false)
+        if (onRestart == false)
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
         onRestart = false;
         super.onPause();
@@ -101,7 +100,7 @@ public class GridViewActivity extends Activity {
 
     @Override
     protected void onRestart() {
-        if(onRestart = false) {
+        if (onRestart = false) {
             Intent intent = new Intent(GridViewActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -139,9 +138,8 @@ public class GridViewActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private String getRealPathFromURI(Uri contentUri)
-    {
-        String[] proj = { MediaStore.Video.Media.DATA };
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Video.Media.DATA};
         Cursor cursor = managedQuery(contentUri, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();

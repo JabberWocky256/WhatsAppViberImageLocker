@@ -1,7 +1,6 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components;
 
 import android.graphics.Bitmap;
-import android.view.Display;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.BitmapLoader;
 
@@ -23,12 +22,12 @@ public class Image {
         this.imagePath = imagePath;
     }
 
-    public Bitmap getImageBitmap(){
+    public Bitmap getImageBitmap() {
         Bitmap result = null;
 
-        if(imagePath != null){
+        if (imagePath != null) {
             BitmapLoader bitmapLoader = new BitmapLoader();
-            result = bitmapLoader.getImage(imagePath, (int)iconSize.width, (int)iconSize.height);
+            result = bitmapLoader.getImage(imagePath, (int) iconSize.width, (int) iconSize.height);
         }
 
         return result;
@@ -39,8 +38,7 @@ public class Image {
     }
 
     public DisplaySize.Size getFullSize() {
-        if(fullSize == null)
-        {
+        if (fullSize == null) {
             fullSize = new BitmapLoader().getImageSize(imagePath);
         }
         return fullSize;

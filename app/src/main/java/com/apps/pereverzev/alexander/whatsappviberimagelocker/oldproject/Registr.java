@@ -22,7 +22,7 @@ import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 public class Registr extends Activity {
     public static final String PREFS_NAME = "AUTHORISATION";
     public static final String PREF_PASSWORD = "password";
-    private EditText password ;
+    private EditText password;
     private ImageView eye;
     private Button btnOk;
 
@@ -47,7 +47,7 @@ public class Registr extends Activity {
             @TargetApi(Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View v) {
-                if(password.getText().toString().length()<3){
+                if (password.getText().toString().length() < 3) {
                     ShowWrangMessage showWrangMessage = new ShowWrangMessage();
                     showWrangMessage.execute();
                 } else {
@@ -96,11 +96,11 @@ public class Registr extends Activity {
         }
     }
 
-    private class ShowWrangMessage extends AsyncTask<Void, Void, Void>{
+    private class ShowWrangMessage extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
-            ((TextView)findViewById(R.id.txtNotCorrect)).setText("Bad login");
+            ((TextView) findViewById(R.id.txtNotCorrect)).setText("Bad login");
         }
 
         @Override
@@ -116,7 +116,7 @@ public class Registr extends Activity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            ((TextView)findViewById(R.id.txtNotCorrect)).setText("");
+            ((TextView) findViewById(R.id.txtNotCorrect)).setText("");
         }
     }
 }

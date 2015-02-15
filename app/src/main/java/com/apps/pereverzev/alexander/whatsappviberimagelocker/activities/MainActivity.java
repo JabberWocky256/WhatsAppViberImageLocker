@@ -1,12 +1,11 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryGridCreator;
 
 
 public class MainActivity extends ActionBarActivity {

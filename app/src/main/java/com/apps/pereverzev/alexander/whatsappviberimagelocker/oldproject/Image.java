@@ -6,24 +6,30 @@ import android.os.Environment;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Created by Александр on 03.11.2014.
  */
 public class Image {
+    private static Utils utils = new Utils();
+    byte[] imageBytes = null;
     private File imageFile;
     private String imagePath;
-    byte[] imageBytes = null;
-    private static Utils utils = new Utils();
 
-    public Image(String imagePath){
+    public Image(String imagePath) {
         this.imagePath = imagePath;
     }
 
 
-    public Bitmap getImage(){
-        if(imageBytes == null)
+    public Bitmap getImage() {
+        if (imageBytes == null)
             imageBytes = downloadImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 
@@ -49,16 +55,16 @@ public class Image {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(utils.IsSupportedFile(imagePath))
+        if (utils.IsSupportedFile(imagePath))
             return image;
-        else if(utils.isSpecialFile(imagePath))
+        else if (utils.isSpecialFile(imagePath))
             return image;
         return null;
     }
 
     public void saveImage() {
         String localePath = android.os.Environment.getExternalStorageDirectory()
-                + File.separator + AppConstant.PHOTO_ALBUM  + File.separator +  imageFile.getName();
+                + File.separator + AppConstant.PHOTO_ALBUM + File.separator + imageFile.getName();
 
         File sd = Environment.getExternalStorageDirectory();
         if (sd.canWrite()) {
@@ -84,13 +90,12 @@ public class Image {
     public Bitmap getIcon(int WIDTH, int HIGHT) {
 
 
-
         BitmapFactory.Options o = null;
         final int REQUIRED_WIDTH = WIDTH;
         final int REQUIRED_HIGHT = HIGHT;
         int scale = 1;
 
-        if(imageBytes == null)
+        if (imageBytes == null)
             imageBytes = downloadImage();
 
         o = new BitmapFactory.Options();

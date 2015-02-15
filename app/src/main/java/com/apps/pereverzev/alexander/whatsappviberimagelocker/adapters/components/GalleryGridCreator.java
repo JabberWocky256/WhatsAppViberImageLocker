@@ -1,9 +1,7 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
-import android.view.Display;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.test.TestData;
 
@@ -37,13 +35,20 @@ public class GalleryGridCreator {
         this.paths = paths;
     }
 
-    public List<GalleryRow> getGrid(Activity context){
+    public static void test(Activity context) {
+        for (int i = 0; i < 10; i++) {
+            GalleryGridCreator creator = new GalleryGridCreator(TestData.getImagesPaths());
+            creator.getGrid(context);
+        }
+    }
+
+    public List<GalleryRow> getGrid(Activity context) {
         this.context = context;
 
-        for(String path: paths){
+        for (String path : paths) {
             File image = new File(path);
 
-            if(image.exists() && !image.isDirectory())
+            if (image.exists() && !image.isDirectory())
                 images.add(new Image(path));
 
             size = images.size();
@@ -53,40 +58,31 @@ public class GalleryGridCreator {
         return galleryRows;
     }
 
-    private void createGalleryRows(){
-        if(size>=3){
-            while(imgNumber < size) {
+    private void createGalleryRows() {
+        if (size >= 3) {
+            while (imgNumber < size) {
                 int numberOfImages = getRandom();
-                if(numberOfImages == 0)
+                if (numberOfImages == 0)
                     break;
 
                 setImages(numberOfImages);
             }
-        }
-        /*else if(size == 3) {
-            if(images.getLast().getFullSize().compareTo(new DisplaySize().getDisplaySize(context)) >= 0){
-                addTwoElements();
-                addOneElement();
-            } else {
-                addTreeElements();
-            }
-        }*/
-        else if (size == 2){
+        } else if (size == 2) {
             addTwoElements();
-        } else if(size == 1){
+        } else if (size == 1) {
             addOneElement();
         }
     }
 
-    private int getRandom(){
+    private int getRandom() {
         int result = 0;
 
-        if(size - imgNumber >= 3) {
+        if (size - imgNumber >= 3) {
             result = getRandomNumber();
-        } else if(size - imgNumber == 2){
+        } else if (size - imgNumber == 2) {
             result = TWO_ELEMENTS;
             imgNumber += 2;
-        } else if(size - imgNumber == 1){
+        } else if (size - imgNumber == 1) {
             result = ONE_ELEMENT;
             imgNumber++;
         } else {
@@ -98,44 +94,50 @@ public class GalleryGridCreator {
         return result;
     }
 
-    private int getRandomNumber(){
-        if(random == null)
+    private int getRandomNumber() {
+        if (random == null)
             random = new Random();
 
         int r = 0;
-        while(r == 0)
+        while (r == 0)
             r = random.nextInt(7);
 
 
         Log.d(TAG, "random number: " + r);
 
-        if(r == 6) {
+        if (r == 6) {
             imgNumber++;
             return ONE_ELEMENT;
-        } else if(r >3 && r < 6) {
+        } else if (r > 3 && r < 6) {
             imgNumber += 2;
             return TWO_ELEMENTS;
         } else {
-            imgNumber +=3;
+            imgNumber += 3;
             return THREE_ELEMENTS;
         }
     }
 
-    private void setImages(int numberOfImages){
-        switch (numberOfImages){
-            case THREE_ELEMENTS: addTreeElements(); break;
-            case TWO_ELEMENTS: addTwoElements(); break;
-            case ONE_ELEMENT: addOneElement(); break;
+    private void setImages(int numberOfImages) {
+        switch (numberOfImages) {
+            case THREE_ELEMENTS:
+                addTreeElements();
+                break;
+            case TWO_ELEMENTS:
+                addTwoElements();
+                break;
+            case ONE_ELEMENT:
+                addOneElement();
+                break;
         }
     }
 
-    private void addTreeElements(){
-        Log.d(TAG,"added 3 elements");
+    private void addTreeElements() {
+        Log.d(TAG, "added 3 elements");
 
-        DisplaySize.Size imageSize= getSmallElementSize();
+        DisplaySize.Size imageSize = getSmallElementSize();
         Image[] threeImages = new Image[3];
 
-        for(int i =0; i<threeImages.length; i++){
+        for (int i = 0; i < threeImages.length; i++) {
             threeImages[i] = images.remove();
             threeImages[i].setIconSize(imageSize);
         }
@@ -146,8 +148,8 @@ public class GalleryGridCreator {
 
     }
 
-    private void addTwoElements(){
-        Log.d(TAG,"added 2 elements");
+    private void addTwoElements() {
+        Log.d(TAG, "added 2 elements");
 
         Image[] twoImages = new Image[2];
 
@@ -155,7 +157,7 @@ public class GalleryGridCreator {
         twoImages[1] = images.remove();
         GalleryRow row = new GalleryRow();
 
-        if(twoImages[0].getFullSize().compareTo(twoImages[1].getFullSize()) <= 0){
+        if (twoImages[0].getFullSize().compareTo(twoImages[1].getFullSize()) <= 0) {
             setMediumSmallSize(twoImages[1], twoImages[0]);
         } else {
             setMediumSmallSize(twoImages[0], twoImages[1]);
@@ -165,15 +167,15 @@ public class GalleryGridCreator {
         galleryRows.add(row);
     }
 
-    private void setMediumSmallSize(Image first, Image second){
+    private void setMediumSmallSize(Image first, Image second) {
         first.setIconSize(getMediumElementSize());
         second.setIconSize(getSmallElementSize());
     }
 
-    private void addOneElement(){
-        Log.d(TAG,"added 1 elements");
+    private void addOneElement() {
+        Log.d(TAG, "added 1 elements");
 
-        DisplaySize.Size imageSize= getLargeElementSize();
+        DisplaySize.Size imageSize = getLargeElementSize();
 
         Image image = images.remove();
         image.setIconSize(imageSize);
@@ -183,32 +185,25 @@ public class GalleryGridCreator {
         galleryRows.add(row);
     }
 
-    private DisplaySize.Size getSmallElementSize(){
+    private DisplaySize.Size getSmallElementSize() {
         displaySize = getDisplaySize();
         return displaySize.getSmallElementSize(context);
     }
 
-    private DisplaySize.Size getMediumElementSize(){
+    private DisplaySize.Size getMediumElementSize() {
         displaySize = getDisplaySize();
         return displaySize.getMediumElementSize(context);
     }
 
-    private DisplaySize.Size getLargeElementSize(){
+    private DisplaySize.Size getLargeElementSize() {
         displaySize = getDisplaySize();
         return displaySize.getLargeElementSize(context);
     }
 
-    private DisplaySize getDisplaySize(){
-        if(displaySize == null)
+    private DisplaySize getDisplaySize() {
+        if (displaySize == null)
             displaySize = new DisplaySize();
 
         return displaySize;
-    }
-
-    public static void test(Activity context){
-        for(int i = 0; i<10; i++) {
-            GalleryGridCreator creator = new GalleryGridCreator(TestData.getImagesPaths());
-            creator.getGrid(context);
-        }
     }
 }

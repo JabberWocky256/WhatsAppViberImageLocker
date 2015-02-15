@@ -14,7 +14,7 @@ public class AppConstant {
     public static final int GRID_PADDING = 8; // in dp
 
     // SD card image directory
-    public static final String PHOTO_ALBUM =  "Download";
+    public static final String PHOTO_ALBUM = "Download";
     public static final String PHOTO_ALBUM_WATS_APP = "WhatsApp/Media/WhatsApp Images";
     public static final String PHOTO_ALBUM_WATS_APP_SENT = "WhatsApp/Media/WhatsApp Images";
     public static final String PHOTO_ALBUM_VIBER = "viber/media/Viber Images";

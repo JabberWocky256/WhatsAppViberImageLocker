@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 /**
  * Created by Александр on 02.11.2014.
  */
-public class FullScreenImageAdapter extends PagerAdapter  {
+public class FullScreenImageAdapter extends PagerAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private int viewMode = 0;

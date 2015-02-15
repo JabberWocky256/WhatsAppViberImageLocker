@@ -1,9 +1,7 @@
 package com.apps.pereverzev.alexander.whatsappviberimagelocker;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.DisplaySize;
 
@@ -18,20 +16,20 @@ public class BitmapLoader {
     public Bitmap getImage(String imagePath, int imageWidth, int imageHeight) {
         File file = new File(imagePath);
 
-        if(file.exists()){
+        if (file.exists()) {
             return decodeSampledBitmapFromFile(file, imageWidth, imageHeight);
         }
 
         return null;
     }
 
-    public DisplaySize.Size getImageSize(String imagePath){
+    public DisplaySize.Size getImageSize(String imagePath) {
         File file = new File(imagePath);
 
         int width = 0;
         int height = 0;
 
-        if(file.exists()){
+        if (file.exists()) {
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(file.getAbsolutePath(), options);
@@ -43,14 +41,14 @@ public class BitmapLoader {
         return new DisplaySize().new Size(height, width);
     }
 
-    private Bitmap decodeSampledBitmapFromFile(File file, int width, int height){
+    private Bitmap decodeSampledBitmapFromFile(File file, int width, int height) {
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         options.inPreferredConfig = Bitmap.Config.ALPHA_8;
         BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-        if(width>0 && height>0) {
+        if (width > 0 && height > 0) {
             // Calculate inSampleSize
             options.inSampleSize = calculateInSampleSize(options, width, height);
         }

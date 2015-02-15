@@ -9,14 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryGridCreator;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryRow;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.gallery_decorator.GalleryLinearLayout;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.test.TestData;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.utils.MyImageLoader;
 
 import java.util.List;
 
@@ -35,11 +34,10 @@ public class GalleryFragment extends Fragment {
         List<GalleryRow> galleryRows = (new GalleryGridCreator(TestData.getImagesPaths())).getGrid(getActivity());
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
-        GridView galleryVerticalView = (GridView)view.findViewById(R.id.galleryView);
+        GridView galleryVerticalView = (GridView) view.findViewById(R.id.galleryView);
+        galleryVerticalView.setOnScrollListener((MyImageLoader.getInstance(getActivity())).getOnPauseListener());
         galleryVerticalView.setAdapter(adapter);
-     /*   GalleryLinearLayout galleryView = new GalleryLinearLayout(galleryVerticalView);
-        galleryView.setAdapter(adapter);
-*/
+
         return view;
     }
 

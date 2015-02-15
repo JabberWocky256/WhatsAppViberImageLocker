@@ -43,7 +43,6 @@ public class FullScreenViewActivity extends Activity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         GridViewActivity.onRestart = false;

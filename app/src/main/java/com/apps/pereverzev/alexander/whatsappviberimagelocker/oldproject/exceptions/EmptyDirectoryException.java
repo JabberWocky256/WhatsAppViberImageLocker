@@ -18,8 +18,7 @@ public class EmptyDirectoryException extends IOException {
      * Constructs a new {@code EmptyDirectoryException} with its stack trace and
      * detail message filled in.
      *
-     * @param detailMessage
-     *            the detail message for this exception.
+     * @param detailMessage the detail message for this exception.
      */
     public EmptyDirectoryException(String detailMessage) {
         super(detailMessage);

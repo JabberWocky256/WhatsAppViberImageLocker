@@ -13,7 +13,9 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -23,7 +25,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -31,18 +32,14 @@ import java.util.ArrayList;
  * Created by Александр on 02.11.2014.
  */
 public class GridViewImageAdapter extends BaseAdapter {
+    private static ArrayList<String> _filePaths = new ArrayList<String>();
+    ImageLoaderConfiguration config;
+    ImageLoader imageLoader;
+    DisplayImageOptions options;
     private GridViewActivity gridViewActivity;
     private Activity _activity;
-    private static ArrayList<String> _filePaths = new ArrayList<String>();
     private int imageWidth;
     private Drawable imageId;
-
-    ImageLoaderConfiguration config ;
-
-    ImageLoader imageLoader;
-
-
-    DisplayImageOptions options;
 
     public GridViewImageAdapter(GridViewActivity grid, Activity activity,
                                 int imageWidth) {
@@ -53,7 +50,7 @@ public class GridViewImageAdapter extends BaseAdapter {
         imageId = _activity.getResources().getDrawable(R.drawable.load);
 
         config = new ImageLoaderConfiguration.Builder(_activity.getApplicationContext())
-                .threadPriority(Thread.NORM_PRIORITY-2)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
@@ -73,12 +70,12 @@ public class GridViewImageAdapter extends BaseAdapter {
         }
     }
 
-    public static synchronized void setPath(String path){
+    public static synchronized void setPath(String path) {
         _filePaths.add(path);
     }
 
-    public static synchronized String getPath(int position){
-        return  _filePaths.get(position);
+    public static synchronized String getPath(int position) {
+        return _filePaths.get(position);
     }
 
   /*  public static synchronized void changePath(int position, String value){
@@ -86,11 +83,11 @@ public class GridViewImageAdapter extends BaseAdapter {
         _filePaths.add(position, value);
     }*/
 
-    public static synchronized void clear(){
+    public static synchronized void clear() {
         _filePaths = new ArrayList<String>();
     }
 
-    public static synchronized int getFilesSize(){
+    public static synchronized int getFilesSize() {
         return _filePaths.size();
     }
 
@@ -124,7 +121,7 @@ public class GridViewImageAdapter extends BaseAdapter {
             grid = (View) convertView;
         }
 
-        imageView = (ImageView)grid.findViewById(R.id.grid_image);
+        imageView = (ImageView) grid.findViewById(R.id.grid_image);
 
         imageView.setMaxWidth(50);
         imageView.setMaxHeight(50);
@@ -164,8 +161,7 @@ public class GridViewImageAdapter extends BaseAdapter {
         imageView.setImageBitmap(bitmap);*/
 
 
-
-        if(getPath(position).substring(getPath(position).length() - 3, getPath(position).length()).equals("evg")){
+        if (getPath(position).substring(getPath(position).length() - 3, getPath(position).length()).equals("evg")) {
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
@@ -175,8 +171,8 @@ public class GridViewImageAdapter extends BaseAdapter {
                     .showImageOnLoading(imageId)
                     .build();
 
-            imageView.getLayoutParams().height = imageWidth-16;
-            imageView.getLayoutParams().width = imageWidth-16;
+            imageView.getLayoutParams().height = imageWidth - 16;
+            imageView.getLayoutParams().width = imageWidth - 16;
         } else {
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
@@ -211,7 +207,7 @@ public class GridViewImageAdapter extends BaseAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String newPath = "";
-                        if(getPath(position).substring(getPath(position).length() - 3, getPath(position).length()).equals("evg")) {
+                        if (getPath(position).substring(getPath(position).length() - 3, getPath(position).length()).equals("evg")) {
                             File file = new File(getPath(position));
                             newPath = getPath(position).substring(0, getPath(position).length() - 3);
                             File file2 = new File(newPath);
@@ -237,8 +233,8 @@ public class GridViewImageAdapter extends BaseAdapter {
                 };
 
                 String message = "";
-                if(path.substring(path.length()-3, path.length()).equals("evg")){
-                    message = "Открыть доступ к изображению?" ;
+                if (path.substring(path.length() - 3, path.length()).equals("evg")) {
+                    message = "Открыть доступ к изображению?";
                 } else {
                     message = "Скрыть изображение?";
                 }
@@ -258,9 +254,7 @@ public class GridViewImageAdapter extends BaseAdapter {
     }
 
 
-
-
-    private class DownloadImagePathes extends AsyncTask{
+    private class DownloadImagePathes extends AsyncTask {
         @Override
         protected Object doInBackground(Object[] params) {
             Utils.getFilesFromViberWhatsApp();
@@ -306,7 +300,7 @@ public class GridViewImageAdapter extends BaseAdapter {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     String newPath = "";
-                    if(getPath(_postion).substring(getPath(_postion).length() - 3, getPath(_postion).length()).equals("evg")) {
+                    if (getPath(_postion).substring(getPath(_postion).length() - 3, getPath(_postion).length()).equals("evg")) {
                         File file = new File(getPath(_postion));
                         newPath = getPath(_postion).substring(0, getPath(_postion).length() - 3);
                         File file2 = new File(newPath);
@@ -332,8 +326,8 @@ public class GridViewImageAdapter extends BaseAdapter {
             };
 
             String message = "";
-            if(path.substring(path.length()-3, path.length()).equals("evg")){
-                message = "Открыть доступ к изображению?" ;
+            if (path.substring(path.length() - 3, path.length()).equals("evg")) {
+                message = "Открыть доступ к изображению?";
             } else {
                 message = "Скрыть изображение?";
             }
