@@ -33,6 +33,7 @@ public class GalleryGridCreator {
         this.galleryRows = new ArrayList<>();
         this.images = new LinkedList<>();
         this.paths = paths;
+        random = new Random();
     }
 
     public static void test(Activity context) {
@@ -95,9 +96,6 @@ public class GalleryGridCreator {
     }
 
     private int getRandomNumber() {
-        if (random == null)
-            random = new Random();
-
         int r = 0;
         while (r == 0)
             r = random.nextInt(7);
@@ -157,10 +155,16 @@ public class GalleryGridCreator {
         twoImages[1] = images.remove();
         GalleryRow row = new GalleryRow();
 
-        if (twoImages[0].getFullSize().compareTo(twoImages[1].getFullSize()) <= 0) {
+        int whichImageBigger = twoImages[0].getFullSize().compareTo(twoImages[1].getFullSize());
+        if (whichImageBigger < 0) {
             setMediumSmallSize(twoImages[1], twoImages[0]);
-        } else {
+        } else if(whichImageBigger > 0) {
             setMediumSmallSize(twoImages[0], twoImages[1]);
+        } else if(whichImageBigger == 0){
+            if(random.nextBoolean())
+                setMediumSmallSize(twoImages[1], twoImages[0]);
+            else
+                setMediumSmallSize(twoImages[0], twoImages[1]);
         }
 
         row.addArray(twoImages);

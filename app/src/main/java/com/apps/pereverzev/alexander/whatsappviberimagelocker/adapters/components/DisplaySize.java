@@ -124,7 +124,7 @@ public class DisplaySize {
                 return false;
             }
 
-            if (this.getSquare() > anotherSize.getSquare())
+            if (this.getSquare() == anotherSize.getSquare())
                 return true;
             else
                 return false;
