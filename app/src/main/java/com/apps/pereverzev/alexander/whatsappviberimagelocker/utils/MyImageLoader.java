@@ -17,6 +17,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.core.process.BitmapProcessor;
@@ -50,13 +51,6 @@ public class MyImageLoader {
         return instance;
     }
 
-    public Bitmap getBitmap(String path, int width, int height){
-        ImageSize targetSize = new ImageSize(width, height); // result Bitmap will be fit to this size
-        Bitmap bmp = imageLoader.loadImageSync("file://" + path, targetSize, getDisplayOptions());
-        
-        return bmp;
-    }
-
     public PauseOnScrollListener getOnPauseListener() {
         boolean pauseOnScroll = false; // or true
         boolean pauseOnFling = true; // or false
@@ -65,11 +59,11 @@ public class MyImageLoader {
         return listener;
     }
 
-    public void setImage(ImageView image, int width, int height, String path, ProgressBar progress) {
-        setImgConfiguration(image, width, height, path, progress);
+    public void setImage(ImageView image, String path, ProgressBar progress) {
+        setImgConfiguration(image, path, progress);
     }
 
-    private void setImgConfiguration(final ImageView image, int width, int height, String path, final ProgressBar ringProgressDialog) {
+    private void setImgConfiguration(final ImageView image, String path, final ProgressBar ringProgressDialog) {
         path = "file://" + path;
         DisplayImageOptions options = getDisplayOptions();
 
@@ -116,7 +110,6 @@ public class MyImageLoader {
     private DisplayImageOptions getDisplayOptions() {
         return new DisplayImageOptions.Builder().cacheInMemory(true)
                     .cacheOnDisk(false)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .imageScaleType(ImageScaleType.EXACTLY).build();
+                    .bitmapConfig(Bitmap.Config.RGB_565).build();
     }
 }

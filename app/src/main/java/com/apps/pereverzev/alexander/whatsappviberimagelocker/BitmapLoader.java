@@ -12,8 +12,6 @@ import java.io.File;
  */
 public class BitmapLoader {
 
-    @Deprecated
-    //used image loader
     public Bitmap getImage(String imagePath, int imageWidth, int imageHeight) {
         File file = new File(imagePath);
         long size = file.length();

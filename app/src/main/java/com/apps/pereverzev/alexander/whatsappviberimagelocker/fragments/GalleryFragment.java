@@ -36,7 +36,7 @@ public class GalleryFragment extends Fragment {
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
         GridView galleryVerticalView = (GridView) view.findViewById(R.id.galleryView);
-     //   galleryVerticalView.setOnScrollListener((MyImageLoader.getInstance(getActivity())).getOnPauseListener());
+        galleryVerticalView.setOnScrollListener((MyImageLoader.getInstance(getActivity())).getOnPauseListener());
         galleryVerticalView.setAdapter(adapter);
 
         return view;

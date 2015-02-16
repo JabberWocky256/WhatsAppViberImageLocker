@@ -16,7 +16,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.MainActivity;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.GalleryActivity;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.oldproject.constants.AppConstant;
 
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class GridViewActivity extends Activity {
     @Override
     protected void onRestart() {
         if (onRestart = false) {
-            Intent intent = new Intent(GridViewActivity.this, MainActivity.class);
+            Intent intent = new Intent(GridViewActivity.this, GalleryActivity.class);
             startActivity(intent);
             finish();
             onRestart = true;

@@ -2,7 +2,6 @@ package com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -10,8 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
-import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.FullScreenViewActivity;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.ScreenImageSlidePagerActivity;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.GalleryRow;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.Image;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.holders.GalleryAdapterHolder;
@@ -43,29 +41,27 @@ public class GalleryAdapter extends BaseAdapter {
             Image tapImage = ((GalleryRow)getItem(rowPosition)).getImage(imagePosition);
             for(int i = 0; i<imagesInGallery.size(); i++){
                 if(imagesInGallery.get(i).equals(tapImage)){
-                    currentPosition = i;
-                    return currentPosition;
+                    return i;
                 }
             }
         }
+            ListIterator<GalleryRow> rows = _galleryRows.listIterator();
+            imagesInGallery = new ArrayList<>();
+            int position = 0;
 
-        ListIterator<GalleryRow> rows = _galleryRows.listIterator();
-        imagesInGallery = new ArrayList<>();
+            while (rows.hasNext()) {
+                int currentIndex = rows.nextIndex();
+                GalleryRow row = rows.next();
 
-        while(rows.hasNext()){
-            int currentIndex = rows.nextIndex();
-            GalleryRow row = rows.next();
-
-            for(int i =0; i<row.getCount(); i++){
-                Image image = row.getImage(i);
-                imagesInGallery.add(image);
-                if(rowPosition == currentIndex && imagePosition == i){
-                    return currentPosition;
+                for (int i = 0; i < row.getCount(); i++) {
+                    Image image = row.getImage(i);
+                    imagesInGallery.add(image);
+                    if (rowPosition == currentIndex && imagePosition == i) {
+                        currentPosition = position;
+                    }
+                    position++;
                 }
-
-                currentPosition++;
             }
-        }
 
         return currentPosition;
     }
@@ -100,7 +96,7 @@ public class GalleryAdapter extends BaseAdapter {
             holder = new GalleryAdapterHolder();
 
             for (int i = 0; i < imagesCount; i++) {
-                ImageView image = initImageView(position, holder, row, i);
+                ImageView image = initImageView(holder, row, i);
                 setImageBitmap(holder, row, i);
                 ((LinearLayout) convertView).addView(image);
             }
@@ -145,7 +141,7 @@ public class GalleryAdapter extends BaseAdapter {
         return result;
     }
 
-    private ImageView initImageView(int position, GalleryAdapterHolder holder, GalleryRow row, int i) {
+    private ImageView initImageView(GalleryAdapterHolder holder, GalleryRow row, int i) {
         ImageView image = addImageView(row.getImage(i));
         holder.images.add(image);
         return image;
@@ -165,8 +161,8 @@ public class GalleryAdapter extends BaseAdapter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(_context, FullScreenViewActivity.class);
-                i.putExtra("position", getPositionOfImageInList(rowPosition, columnPosition));
+                Intent i = new Intent(_context, ScreenImageSlidePagerActivity.class);
+                i.putExtra(ScreenImageSlidePagerActivity.POSITION, getPositionOfImageInList(rowPosition, columnPosition));
                 _context.startActivity(i);
             }
         };
@@ -174,7 +170,6 @@ public class GalleryAdapter extends BaseAdapter {
 
     private void setImageBitmap(GalleryAdapterHolder holder, GalleryRow row, int i) {
         Image image = row.getImage(i);
-        imageLoader.setImage(holder.images.get(i), (int) Math.ceil(image.getIconSize().width),
-                (int) Math.ceil(image.getIconSize().height), image.getImagePath(), null);
+        imageLoader.setImage(holder.images.get(i), image.getImagePath(), null);
     }
 }

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class GalleryActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

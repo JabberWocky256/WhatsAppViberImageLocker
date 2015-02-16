@@ -264,6 +264,7 @@ public class TouchImageView extends ImageView {
             setZoom(delayedZoomVariables.scale, delayedZoomVariables.focusX, delayedZoomVariables.focusY, delayedZoomVariables.scaleType);
             delayedZoomVariables = null;
         }
+
         super.onDraw(canvas);
     }
 

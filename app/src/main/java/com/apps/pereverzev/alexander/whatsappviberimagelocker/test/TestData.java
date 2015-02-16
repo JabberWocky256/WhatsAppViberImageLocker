@@ -19,7 +19,7 @@ public class TestData {
     public static List<String> getImagesPaths() {
         List<String> paths = new ArrayList<>();
         for (String path : IMAGE_PATH) {
-            String p = "/storage/extSdCard" + File.separator + "Download/" + path;
+            String p = "/storage/sdcard0/Download/" + path;
             paths.add(p);
         }
 
