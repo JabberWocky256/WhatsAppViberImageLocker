@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.DisplaySize;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.Image;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -57,6 +58,14 @@ public class MyImageLoader {
         PauseOnScrollListener listener = new PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling);
 
         return listener;
+    }
+
+    public Bitmap getBitmap(Image img){
+        ImageLoader imageLoader1 = ImageLoader.getInstance();
+        ImageSize size = new ImageSize((int)Math.ceil(img.getFullSize().width), (int)Math.ceil(img.getFullSize().height));
+        Bitmap bitmap = imageLoader1.loadImageSync("file://" + img.getImagePath(), size);
+
+        return bitmap;
     }
 
     public void setImage(ImageView image, String path, ProgressBar progress) {

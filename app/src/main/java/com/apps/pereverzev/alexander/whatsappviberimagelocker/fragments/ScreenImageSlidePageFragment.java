@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.components.Image;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.fragments.components.ImagesStack;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.utils.MyImageLoader;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.utils.TouchImageView;
 
@@ -20,15 +21,17 @@ import java.lang.ref.WeakReference;
  * Created by Alexander on 16.02.2015.
  */
 public class ScreenImageSlidePageFragment extends Fragment {
-    private static WeakReference<Bitmap> mBitmapReference;
     private static final String ARGUMENT_PAGE_NUMBER = "PAGE_NUMBER";
+    public static ImagesStack stack;
     private int pageNumber;
-    public static TouchImageView touchImage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER, -1);
+
+        if(stack == null)
+            stack = new ImagesStack();
 
         if(savedInstanceState != null) {
             pageNumber = savedInstanceState.getInt(ARGUMENT_PAGE_NUMBER, pageNumber);
@@ -40,20 +43,23 @@ public class ScreenImageSlidePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.layout_fullscreen_image, container, false);
-        touchImage = (TouchImageView)rootView.findViewById(R.id.imgDisplay);
+        TouchImageView touchImage = (TouchImageView)rootView.findViewById(R.id.imgDisplay);
+        touchImage.setTag((Integer)pageNumber);
+        stack.add(pageNumber, touchImage);
 
-        Image img = (GalleryAdapter.imagesInGallery.get(pageNumber));
-        MyImageLoader imageLoader = MyImageLoader.getInstance(getActivity());
-        imageLoader.setImage(touchImage, img.getImagePath(), null);
-
-/*        Bitmap bitmapImage = ((new BitmapLoader()).getImage(img.getImagePath(), (int)Math.ceil(img.getFullSize().width),
-                (int) Math.ceil(img.getFullSize().height)));
-
-        mBitmapReference = new WeakReference<Bitmap>(bitmapImage);
-
-        touchImage.setImageBitmap(mBitmapReference.get());*/
+        WeakReference<Bitmap> mBitmapReference = getBitmapReference();
+        touchImage.setImageBitmap(mBitmapReference.get());
 
         return rootView;
+    }
+
+    private WeakReference<Bitmap> getBitmapReference() {
+        WeakReference<Bitmap> result;
+        Image img = (GalleryAdapter.imagesInGallery.get(pageNumber));
+        Bitmap bitmap = MyImageLoader.getInstance(getActivity()).getBitmap(img);
+        result = new WeakReference<>(bitmap);
+
+        return result;
     }
 
     @Override

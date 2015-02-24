@@ -8,11 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
 
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.R;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.activities.components.ZoomOutPageTransformer;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.adapters.GalleryAdapter;
 import com.apps.pereverzev.alexander.whatsappviberimagelocker.fragments.ScreenImageSlidePageFragment;
+import com.apps.pereverzev.alexander.whatsappviberimagelocker.fragments.components.ImagesStack;
 
 import java.lang.ref.WeakReference;
 
@@ -39,7 +41,18 @@ public class ScreenImageSlidePagerActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        ImagesStack stack = ScreenImageSlidePageFragment.stack;
+        if(stack != null)
+        {
+           if(stack.isImageZoom()){
+               stack.resetImageZoom();
+           } else {
+               ScreenImageSlidePageFragment.stack = null;
+               super.onBackPressed();
+           }
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -55,6 +68,11 @@ public class ScreenImageSlidePagerActivity extends FragmentActivity {
         @Override
         public int getCount() {
             return GalleryAdapter.imagesInGallery.size();
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            return super.instantiateItem(container, position);
         }
     }
 }
