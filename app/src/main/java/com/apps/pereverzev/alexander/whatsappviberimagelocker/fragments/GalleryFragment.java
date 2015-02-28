@@ -32,7 +32,7 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.gallery_view, container, false);
 
-        List<GalleryRow> galleryRows = (new GalleryGridCreator(TestData.getImagesPaths())).getGrid(getActivity());
+        List<GalleryRow> galleryRows = (new GalleryGridCreator(TestData.getImagesPaths(), 3)).getGrid(getActivity());
         adapter = new GalleryAdapter(galleryRows, getActivity());
 
         GridView galleryVerticalView = (GridView) view.findViewById(R.id.galleryView);

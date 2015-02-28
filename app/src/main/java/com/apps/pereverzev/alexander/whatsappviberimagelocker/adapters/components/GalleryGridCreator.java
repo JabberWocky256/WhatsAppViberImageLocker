@@ -53,9 +53,9 @@ public class GalleryGridCreator {
 
             if (image.exists() && !image.isDirectory())
                 images.add(new Image(path));
-
-            size = images.size();
         }
+
+        size = images.size();
 
         createRows();
         return galleryRows;
@@ -66,6 +66,7 @@ public class GalleryGridCreator {
             int numberFreeImages = size - imgNumber;
             int numberOfImagesInRow = getRandomNumber(numberFreeImages);
             setImages(numberOfImagesInRow);
+            imgNumber += numberOfImagesInRow;
         }
     }
 
@@ -111,9 +112,7 @@ public class GalleryGridCreator {
 
         int rand;
         int max = getMaxRandomNumber(maxValue);
-        do {
-            rand = random.nextInt(max);
-        } while (rand == 0);
+        rand = random.nextInt(max) + 1;
 
         Log.d(TAG, "random number: " + rand);
 
@@ -129,11 +128,12 @@ public class GalleryGridCreator {
 
     private int getQuantityOfImagesInRow(int maxRandomNumber, int currentQuantity){
         int result = 1;
-        while(maxRandomNumber <= currentQuantity){
-            for(int i = 0; i<result; i++){
+        while(maxRandomNumber > currentQuantity){
+            for(int i = 0; i<=result; i++){
                 maxRandomNumber--;
             }
-            result++;
+            if(maxRandomNumber != 0)
+                result++;
         }
 
         return result;
