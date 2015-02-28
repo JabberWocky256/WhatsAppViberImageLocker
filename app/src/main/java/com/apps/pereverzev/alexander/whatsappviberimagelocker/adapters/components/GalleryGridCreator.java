@@ -28,17 +28,19 @@ public class GalleryGridCreator {
     private DisplaySize displaySize;
     private Activity context;
     private int size;
+    private int maxNumberOfColumns;
 
-    public GalleryGridCreator(List<String> paths) {
+    public GalleryGridCreator(List<String> paths, int maxNumberOfColumns) {
         this.galleryRows = new ArrayList<>();
         this.images = new LinkedList<>();
         this.paths = paths;
         random = new Random();
+        this.maxNumberOfColumns = maxNumberOfColumns;
     }
 
     public static void test(Activity context) {
         for (int i = 0; i < 10; i++) {
-            GalleryGridCreator creator = new GalleryGridCreator(TestData.getImagesPaths());
+            GalleryGridCreator creator = new GalleryGridCreator(TestData.getImagesPaths(), 3);
             creator.getGrid(context);
         }
     }
@@ -55,8 +57,16 @@ public class GalleryGridCreator {
             size = images.size();
         }
 
-        createGalleryRows();
+        createRows();
         return galleryRows;
+    }
+
+    private void createRows() {
+        while (imgNumber < size){
+            int numberFreeImages = size - imgNumber;
+            int numberOfImagesInRow = getRandomNumber(numberFreeImages);
+            setImages(numberOfImagesInRow);
+        }
     }
 
     private void createGalleryRows() {
@@ -92,6 +102,40 @@ public class GalleryGridCreator {
         }
 
         Log.d(TAG, "return random image numbers: " + result);
+        return result;
+    }
+
+    private int getRandomNumber(int maxValue) {
+        if(maxNumberOfColumns < maxValue)
+            maxValue = maxNumberOfColumns;
+
+        int rand;
+        int max = getMaxRandomNumber(maxValue);
+        do {
+            rand = random.nextInt(max);
+        } while (rand == 0);
+
+        Log.d(TAG, "random number: " + rand);
+
+       return getQuantityOfImagesInRow(max, rand);
+    }
+
+    private int getMaxRandomNumber(int amount){
+        if(amount <= 0)
+            return 0;
+
+        return amount + getMaxRandomNumber(amount-1);
+    }
+
+    private int getQuantityOfImagesInRow(int maxRandomNumber, int currentQuantity){
+        int result = 1;
+        while(maxRandomNumber <= currentQuantity){
+            for(int i = 0; i<result; i++){
+                maxRandomNumber--;
+            }
+            result++;
+        }
+
         return result;
     }
 
